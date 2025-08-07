@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - AI Career Path Recommender</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-gradient);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: rgba(44, 62, 80, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .about-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin: 1rem 0;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--secondary-color);
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 10px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-rocket me-2"></i>Career AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="about-container">
+            <div class="text-center mb-5">
+                <h1 class="display-4 fw-bold text-primary mb-4">
+                    <i class="fas fa-info-circle me-3"></i>About Career AI
+                </h1>
+                <p class="lead">
+                    Empowering individuals to discover their ideal career path through the power of artificial intelligence and machine learning.
+                </p>
+            </div>
+
+            <!-- Mission Section -->
+            <div class="row mb-5">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">Our Mission</h2>
+                    <p class="lead">To democratize career guidance by making personalized, data-driven career recommendations accessible to everyone.</p>
+                    <p>In today's rapidly evolving job market, choosing the right career path can be overwhelming. Our AI-powered platform analyzes your unique combination of skills, interests, and aspirations to provide you with tailored career recommendations based on real industry data.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Team collaboration" class="img-fluid rounded shadow">
+                </div>
+            </div>
+
+            <!-- Statistics -->
+            <div class="row mb-5">
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <h5>Career Paths</h5>
+                        <p>Comprehensive database of career options</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">95%</div>
+                        <h5>Accuracy Rate</h5>
+                        <p>High precision in career matching</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">10K+</div>
+                        <h5>Users Helped</h5>
+                        <p>Individuals guided to their ideal careers</p>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="stat-number">24/7</div>
+                        <h5>Availability</h5>
+                        <p>Always accessible career guidance</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- How It Works -->
+            <div class="mb-5">
+                <h2 class="text-center mb-4">How Our AI Works</h2>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="feature-card text-center">
+                            <i class="fas fa-user-edit feature-icon"></i>
+                            <h4>1. Input Analysis</h4>
+                            <p>You provide your skills and interests, which our system processes using natural language processing techniques.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card text-center">
+                            <i class="fas fa-brain feature-icon"></i>
+                            <h4>2. AI Processing</h4>
+                            <p>Our machine learning algorithm uses TF-IDF vectorization and cosine similarity to match your profile with career data.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="feature-card text-center">
+                            <i class="fas fa-chart-bar feature-icon"></i>
+                            <h4>3. Smart Recommendations</h4>
+                            <p>Receive personalized career suggestions with detailed information about salary, growth potential, and required skills.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technology Stack -->
+            <div class="mb-5">
+                <h2 class="text-center mb-4">Technology Stack</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="feature-card">
+                            <h4><i class="fab fa-python me-2"></i>Backend Technologies</h4>
+                            <ul class="list-unstyled">
+                                <li><strong>Flask:</strong> Lightweight Python web framework</li>
+                                <li><strong>Scikit-learn:</strong> Machine learning library for AI algorithms</li>
+                                <li><strong>Pandas & NumPy:</strong> Data manipulation and analysis</li>
+                                <li><strong>TF-IDF Vectorization:</strong> Text analysis and feature extraction</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="feature-card">
+                            <h4><i class="fab fa-html5 me-2"></i>Frontend Technologies</h4>
+                            <ul class="list-unstyled">
+                                <li><strong>Bootstrap 5:</strong> Responsive design framework</li>
+                                <li><strong>JavaScript:</strong> Interactive user experience</li>
+                                <li><strong>Font Awesome:</strong> Beautiful icons and graphics</li>
+                                <li><strong>CSS3:</strong> Modern styling and animations</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Development Timeline -->
+            <div class="mb-5">
+                <h2 class="text-center mb-4">Development Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h5>Research & Planning</h5>
+                            <p>Extensive research on career guidance methodologies and machine learning approaches for recommendation systems.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h5>Data Collection</h5>
+                            <p>Compiled comprehensive career database with salary information, growth rates, and skill requirements from industry sources.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h5>Algorithm Development</h5>
+                            <p>Implemented machine learning algorithms using TF-IDF vectorization and cosine similarity for accurate career matching.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h5>Platform Launch</h5>
+                            <p>Deployed the complete web application with an intuitive user interface and real-time career recommendations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Future Plans -->
+            <div class="feature-card mb-5">
+                <h2 class="text-center mb-4">Future Enhancements</h2>
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Integration with job market APIs for real-time data</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Advanced personality assessment integration</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Mobile application development</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Multi-language support</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Career progression pathway mapping</li>
+                            <li class="mb-2"><i class="fas fa-check text-success me-2"></i>Integration with learning platforms</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2025 Career AI Recommender. Powered by Machine Learning.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

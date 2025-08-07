@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Path Recommender</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --background-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--background-gradient);
+            min-height: 100vh;
+        }
+
+        .hero-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            background: rgba(44, 62, 80, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 2rem 0;
+        }
+
+        .form-control {
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            padding: 0.75rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            border: none;
+            border-radius: 25px;
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .career-card {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--secondary-color);
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .similarity-score {
+            background: var(--success-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .spinner-border {
+            color: var(--secondary-color);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .alert {
+            border-radius: 10px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-rocket me-2"></i>Career AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="hero-section text-center">
+            <h1 class="display-4 fw-bold text-primary mb-4">
+                <i class="fas fa-brain me-3"></i>Find your career Path
+            </h1>
+            <p class="lead mb-4">
+                Discover your ideal career path using advanced machine learning algorithms. 
+                Get personalized recommendations based on your skills and interests.
+            </p>
+            <a href="#recommender" class="btn btn-primary btn-lg">
+                <i class="fas fa-search me-2"></i>Find My Career
+            </a>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-robot feature-icon"></i>
+                    <h4>AI-Powered</h4>
+                    <p>Uses advanced machine learning algorithms to analyze your profile and match you with suitable careers.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h4>Data-Driven</h4>
+                    <p>Based on real industry data including salary ranges, growth rates, and skill requirements.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-user-check feature-icon"></i>
+                    <h4>Personalized</h4>
+                    <p>Tailored recommendations that match your unique combination of skills and interests.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Career Recommender Form -->
+        <div class="form-container" id="recommender">
+            <h2 class="text-center mb-4">
+                <i class="fas fa-compass me-2"></i>Get Your Career Recommendations
+            </h2>
+            
+            <form id="careerForm">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="skills" class="form-label">
+                                <i class="fas fa-tools me-2"></i>Your Skills
+                            </label>
+                            <textarea class="form-control" id="skills" rows="4" 
+                                    placeholder="Enter your skills separated by commas (e.g., python, communication, problem solving, leadership)"></textarea>
+                            <div class="form-text">List your technical and soft skills</div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="interests" class="form-label">
+                                <i class="fas fa-heart me-2"></i>Your Interests
+                            </label>
+                            <textarea class="form-control" id="interests" rows="4" 
+                                    placeholder="Enter your interests separated by commas (e.g., technology, creativity, helping others, analysis)"></textarea>
+                            <div class="form-text">What activities and topics excite you?</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-magic me-2"></i>Get Recommendations
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Loading Animation -->
+        <div class="loading" id="loading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3">Analyzing your profile and finding the best career matches...</p>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="mt-4" style="display: none;">
+            <h3 class="text-center mb-4">
+                <i class="fas fa-trophy me-2"></i>Your Career Recommendations
+            </h3>
+            <div id="recommendations"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2025 Career AI Recommender. Powered by Machine Learning.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('careerForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const skills = document.getElementById('skills').value;
+            const interests = document.getElementById('interests').value;
+            
+            if (!skills.trim() && !interests.trim()) {
+                alert('Please enter at least some skills or interests.');
+                return;
+            }
+            
+            // Show loading
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            
+            try {
+                const response = await fetch('/recommend', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        skills: skills,
+                        interests: interests
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                displayRecommendations(data.recommendations);
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while getting recommendations. Please try again.');
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        });
+        
+        function displayRecommendations(recommendations) {
+            const resultsDiv = document.getElementById('recommendations');
+            resultsDiv.innerHTML = '';
+            
+            recommendations.forEach((rec, index) => {
+                const card = document.createElement('div');
+                card.className = 'career-card';
+                card.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h4 class="mb-0">${rec.career}</h4>
+                        <span class="similarity-score">${rec.similarity_score}% Match</span>
+                    </div>
+                    <p class="text-muted mb-3">${rec.data.description}</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-dollar-sign me-2"></i>Salary Range</h6>
+                            <p>${rec.data.salary_range}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-chart-line me-2"></i>Growth Rate</h6>
+                            <p>${rec.data.growth_rate}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-cogs me-2"></i>Key Skills</h6>
+                            <div class="d-flex flex-wrap">
+                                ${rec.data.skills.slice(0, 4).map(skill => 
+                                    `<span class="badge bg-secondary me-1 mb-1">${skill}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-heart me-2"></i>Interests</h6>
+                            <div class="d-flex flex-wrap">
+                                ${rec.data.interests.slice(0, 3).map(interest => 
+                                    `<span class="badge bg-info me-1 mb-1">${interest}</span>`
+                                ).join('')}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                resultsDiv.appendChild(card);
+            });
+            
+            document.getElementById('results').style.display = 'block';
+            document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
